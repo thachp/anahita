@@ -167,7 +167,7 @@ abstract class ComMigratorMigrationAbstract extends KObject
         $version = min($this->getMaxVersion(), $version);
         $version = max($version, 0);
         $this->_getVersion()->version = $version;
-        $this->_getVersion()->saveEntity();
+        $this->_getVersion()->save();
     }
     
     /**
@@ -409,7 +409,7 @@ EOF;
             $config = array(
               'db' => $this->_db,
               'version'            => $version,
-              'service_container'  => $this->getService(),
+              'service_container'  => KService::getInstance(),
               'service_identifier' => $this->getIdentifier(
                       'com://admin/'.$this->getIdentifier()->package.'.schema.migration.'.$version)
             );
