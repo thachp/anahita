@@ -131,12 +131,12 @@ class PackageCommand extends Command
         {
             if ( $name = (string)$file->attributes()->plugin )
             {
-                $plugin = $plugins->findOrAddNew(array(
+                $plugin = $plugins->findOrCreate(array(
                      'element' => $name,
                      'folder'  => $group 
                 ), array('data'=>array('params'=>'','published'=>true)));
                 $plugin->name = (string)$manifest->name;                
-                $plugin->saveEntity();                
+                $plugin->save();                
                 $output->writeLn("<info>...installing $group plugin $name</info>");
                 return;
             }
@@ -153,7 +153,7 @@ class PackageCommand extends Command
                     array('resources'=>'components'));
         
         //find or create a component
-        $component  = $components->findOrAddNew(array('option'=>$name,'parent'=>0), 
+        $component  = $components->findOrCreate(array('option'=>$name,'parent'=>0), 
                 array('data'=>array('params'=>'')));
         
         //remove any child component
@@ -195,7 +195,7 @@ class PackageCommand extends Command
             $schema = true;
         }         
         $output->writeLn('<info>...installing '.str_replace('com_','',$name).' component</info>');        
-        $component->saveEntity();
+        $component->save();
         if ( $schema &&
                 file_exists($path.'/schemas/schema.sql') ) 
         {
