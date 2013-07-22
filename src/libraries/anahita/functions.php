@@ -712,4 +712,19 @@ function print_query($query)
     print str_replace('#__','jos_', $query)."\G";
 }
 
+/**
+ * Return an array group by the value returned by the callback
+ *
+ * @param array $array
+ * @param mixed $callback
+ */
+function array_group_by($array, $callback)
+{
+    $group = array();
+    foreach($array as $item) {
+        $group[$callback($item)][] = $item;
+    }
+    return $group;
+}
+
 ?>
