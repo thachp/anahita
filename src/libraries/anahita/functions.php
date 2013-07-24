@@ -74,6 +74,7 @@ function deprecated($msg = null)
 function _die($message='')
 {
     trigger_error('DIE :'.$message, E_USER_WARNING);
+    debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
     die;
 }
 
@@ -725,6 +726,29 @@ function array_group_by($array, $callback)
         $group[$callback($item)][] = $item;
     }
     return $group;
+}
+
+
+/**
+ * Fix config bug when hash array and list array are mixed together
+ * 
+ * @param array $array
+ * 
+ * @return array
+ */
+function to_hash($array, $default = array())
+{
+    $array     = (array)$array;
+    $new_array = array();
+    foreach($array as $key => $value) 
+    {
+        if ( is_int($key) ) {
+            $key   = $value;
+            $value = $default;
+        }
+        $new_array[$key] = $value;
+    }
+    return $new_array;
 }
 
 ?>

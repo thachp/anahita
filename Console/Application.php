@@ -135,7 +135,7 @@ class Application extends \Symfony\Component\Console\Application
             'cache_prefix'  => uniqid(),
             'cache_enabled' => false
             ));
-            
+            \JFactory::getApplication('administrator', array('session'=>PHP_SAPI !== 'cli'));
             \KServiceIdentifier::setApplication('site' , JPATH_SITE);
             \KServiceIdentifier::setApplication('admin', JPATH_ADMINISTRATOR);
             
