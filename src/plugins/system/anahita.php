@@ -139,8 +139,11 @@ class PlgSystemAnahita extends JPlugin
 	 */
 	public function onAfterRoute()
 	{
-		$type 	= strtolower(KRequest::get('request.format', 'cmd', 'html'));
-				
+		$type 	= strtolower(KRequest::get('request.format', 'cmd', KRequest::format()));
+		if ( empty($type) ) {
+		    $type = 'html';
+		}		
+		
 		$format = $type;
 		
 		if ( KRequest::type() == 'AJAX' ) {
@@ -162,7 +165,7 @@ class PlgSystemAnahita extends JPlugin
 		}
 		
 		KRequest::set('get.format',		$format);
-				
+        				
 		//wrap a HTML document around a decorator
 		if (JFactory::getDocument()->getType() == 'html')
 		{
