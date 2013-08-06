@@ -90,8 +90,12 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      * @return boolean
      */        
     protected function _actionDispatch(KCommandContext $context)
-    {        
-        parent::_actionDispatch($context);
+    {   
+        //set some legacy config
+        $config =& JFactory::getConfig();
+        $config->setValue('config.list_limit', 20);
+        
+        parent::_actionDispatch($context);        
         
         $this->_application->triggerEvent('onAfterDispatch', array($context));
         
@@ -129,35 +133,37 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
             $file = 'login';
         }
         
-        $config = array(
-            'template'  => $template,
-            'file'      => $file.'.php',
-            'directory' => JPATH_THEMES
-        );
-        
-        $document =& JFactory::getDocument();
-        $document->addScript( JURI::root(true).'/administrator/includes/joomla.javascript.js');
-        $document->setTitle( htmlspecialchars_decode($this->_application->getCfg('sitename' )). ' - ' .JText::_( 'Administration' ));
-        $document->setDescription( $this->_application->getCfg('MetaDesc') );
-        
-        $document->setBuffer($context->response->getContent(), 'component');
-        $content = $document->render(false, $config);
-        
-        //lets do some parsing. mission template and legacy stuff
-        $content = preg_replace_callback('#(src|href)="templates\/#',function($matches){
-           return $matches[1].'="'.KRequest::base().'/templates/';
-        }, $content);
-        
-        $content = preg_replace_callback('#(src|href)="/(media|administrator)/#',function($matches){
-            return $matches[1].'="'.KRequest::root().'/'.$matches[2].'/';
-        }, $content); 
-               
-        
-        $content = preg_replace_callback('#action="index.php"#',function($matches){
-            return 'action="'.JRoute::_('index.php?').'"';
-        }, $content);
-                
-        $context->response->setContent($content);       
+        if ( $this->getRequest()->get('tmpl') != 'raw' )
+        {
+            $config = array(
+                    'template'  => $template,
+                    'file'      => $file.'.php',
+                    'directory' => JPATH_THEMES
+            );
+            
+            $document =& JFactory::getDocument();
+            $document->addScript( JURI::root(true).'/administrator/includes/joomla.javascript.js');
+            $document->setTitle( htmlspecialchars_decode($this->_application->getCfg('sitename' )). ' - ' .JText::_( 'Administration' ));
+            $document->setDescription( $this->_application->getCfg('MetaDesc') );
+            
+            $document->setBuffer($context->response->getContent(), 'component');
+            $content = $document->render(false, $config);
+            
+            //lets do some parsing. mission template and legacy stuff
+            $content = preg_replace_callback('#(src|href)="templates\/#',function($matches){
+                return $matches[1].'="'.KRequest::base().'/templates/';
+            }, $content);
+
+            $content = preg_replace_callback('#(src|href)="/(media|administrator)/#',function($matches){
+                return $matches[1].'="'.KRequest::root().'/'.$matches[2].'/';
+            }, $content);
+
+            $content = preg_replace_callback('#action="index.php"#',function($matches){
+                return 'action="'.JRoute::_('index.php?').'"';
+            }, $content);
+
+            $context->response->setContent($content);
+        }
     }
     
     /**

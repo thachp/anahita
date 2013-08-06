@@ -4,11 +4,11 @@
 
 <?php
 	JToolBarHelper::title( JText::_( 'User Manager' ), 'user.png' );
-	JToolBarHelper::custom( 'logout', 'cancel.png', 'cancel_f2.png', 'Logout' );
+	JToolBarHelper::custom( 'logout', 'cancel.png', 'cancel_f2.png', 'Logout' );	
 	JToolBarHelper::deleteList();
 	JToolBarHelper::editListX();
-	JToolBarHelper::addNewX();
-	JToolBarHelper::help( 'screen.users' );
+	JToolBarHelper::addNewX();	
+	JToolBarHelper::preferences('com_users');
 ?>
 
 <form action="index.php?option=com_users" method="post" name="adminForm">
