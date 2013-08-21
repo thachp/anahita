@@ -12,7 +12,17 @@ if ( count($commands) )
     }
 }
 ?>
-<div class="an-media-header" data-behavior="BS.Dropdown">	
+  <div class="btn-group">
+        <button class="btn dropdown-toggle">
+            <?= ucfirst($this->getView()->getIdentifier()->package)?>&nbsp;<span class="caret"></span>
+        </button>  
+        <ul class="dropdown-menu">
+            <li><a href="<?=@route('option=photos&view=photos&oid='.$actorbar->getActor()->id)?>">Photos</a></li>
+            <li><a href="<?=@route('option=topics&view=topics&oid='.$actorbar->getActor()->id)?>">Topics</a></li>
+            <li><a href="<?=@route('option=todos&view=todos&oid='.$actorbar->getActor()->id)?>">Todos</a></li>
+    	</ul>	        
+    </div>	
+<div class="an-media-header" data-behavior="BS.Dropdown">
 	<div class="clearfix">
 	    <div class="pull-left">			
     		<div class="avatar">
@@ -23,6 +33,7 @@ if ( count($commands) )
     		</div>
 		</div>
 		<?php if ( !empty($active) ) : ?>
+  	
         <div class="btn-group pull-right">
             <button class="btn dropdown-toggle">
                 <?= $active->label ?>&nbsp;<span class="caret"></span>
@@ -38,7 +49,8 @@ if ( count($commands) )
         			</a>
         		</li>
         	</ul>	        
-        </div>		
+        </div>	
+	        	
         <?php endif;?>
 	</div>
 	
