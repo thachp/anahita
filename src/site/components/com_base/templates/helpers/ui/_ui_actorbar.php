@@ -31,6 +31,7 @@ if ( count($commands) )
         	<?php foreach($commands as $command) : ?>
         		<li><?= @helper('ui.command', $command) ?></li>
         	<?php endforeach; ?>
+        	    <li class="divider"></li>
         		<li class="profile">
         			<a href="<?=@route($actorbar->getActor()->getURL())?>">
         			<?= @text('COM-ACTORS-BACK-TO-PROFILE') ?>
