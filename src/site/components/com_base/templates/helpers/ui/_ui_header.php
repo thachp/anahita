@@ -1,6 +1,6 @@
 <?php defined('KOOWA') or die('Restricted access') ?>
 
-<?php if ( !empty($menubar) ) : ?>
+<?php if ( !empty($menubar) && empty($actorbar) ) : ?>
 <?= @helper('ui.menubar', array('menubar'=>$menubar))?>
 <?php endif;?>
 <?php if ( !empty($actorbar) ) : ?>
