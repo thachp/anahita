@@ -8,7 +8,24 @@ Getting Started
 =========================================
 To install and get started on Anahita please read the guide at [Getting Started](https://github.com/anahitasocial/anahita/wiki/Getting-started)
 
+Development with Vagrant
+=========================================
+Open your system's  hosts file (`/etc/hosts` on Mac/Linux).
+ Append the following entry:
+
+	192.168.56.101 anahita.dev
+	192.168.56.101 www.anahita.dev
+
+## Getting started with vagrant
+- Clone this repository to your local machine.
+- In the terminal `cd` to the cloned directory.
+- Execute the `vagrant up` command.
+- Access the local stage box via `http://www.anahita.dev`.
+- Default Administrator credential is admin: admin
+
 Get Help
 ========
 If you need any help with the Anahita installation or have general question about Anahita. 
 You visit http://GetAnahita.com or follow the Anahita project group at http://www.GetAnahita.com/groups/group/42242-anahita
+
+
