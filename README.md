@@ -7,10 +7,10 @@ Anahita is open source and it is available under the GPL3 license.
 Getting Started
 =========================================
 - Open your system's  hosts file (`/etc/hosts` on Mac/Linux).
- Append the following entry:
+    Append the following entry:
 
-	192.168.56.101 anahita.dev
-	192.168.56.101 www.anahita.dev
+    	192.168.56.101 anahita.dev
+	    192.168.56.101 www.anahita.dev
 
 - Install Vagrant at https://www.vagrantup.com/downloads
 
