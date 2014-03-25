@@ -12,7 +12,7 @@ Open your system's  hosts file (`/etc/hosts` on Mac/Linux).
 	192.168.56.101 anahita.dev
 	192.168.56.101 www.anahita.dev
 
-Install `Vagrant <https://www.vagrantup.com/downloads>`
+Install Vagrant at https://www.vagrantup.com/downloads
 
 ## Getting started with vagrant
 - Clone this repository to your local machine.
