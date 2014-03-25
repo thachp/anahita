@@ -2,19 +2,17 @@ What's Anahita
 ============== 
 Anahita is a remarkable social networking platform for building apps and services that connect people so they can share knowledge.
 As it is, Anahita provides the essential elements needed for launching a social network plus a powerful framework for extending and customizing it. 
-Anahita is open source and it is available under the GPL3 license. 
+Anahita is open source and it is available under the GPL3 license.
 
 Getting Started
-=========================================
-To install and get started on Anahita please read the guide at [Getting Started](https://github.com/anahitasocial/anahita/wiki/Getting-started)
-
-Development with Vagrant
 =========================================
 Open your system's  hosts file (`/etc/hosts` on Mac/Linux).
  Append the following entry:
 
 	192.168.56.101 anahita.dev
 	192.168.56.101 www.anahita.dev
+
+Install `Vagrant <https://www.vagrantup.com/downloads>`
 
 ## Getting started with vagrant
 - Clone this repository to your local machine.
